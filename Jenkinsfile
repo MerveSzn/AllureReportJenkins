@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+   tools {
+         maven 'Maven'
+     }
     environment {
         ALLURE_RESULTS = 'allure-results'   // Directory where allure results are stored
         ALLURE_REPORT = 'allure-report'     // Directory where allure report will be generated
