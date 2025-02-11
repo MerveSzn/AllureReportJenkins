@@ -32,13 +32,21 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 // Generate Allure Report using the Allure Maven plugin
-                sh 'mvn allure:serve'  // This will generate the Allure Report
+                sh 'mvn allure:report'  // This will generate the Allure Report
             }
         }
 
-        stage('Publish Allure Report') {
+       stage('Publish Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', results: [[path: "${ALLURE_RESULTS}"]]
+                script {
+                    // Publish Allure report
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'target/allure-results']]
+                    ])
+                }
             }
         }
     }
@@ -47,5 +55,6 @@ pipeline {
         always {
             cleanWs()  // Clean workspace after the build
         }
+
     }
 }
