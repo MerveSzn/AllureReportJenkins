@@ -49,6 +49,14 @@ pipeline {
                 }
             }
         }
+        stage('Test Email') {
+                    steps {
+                        emailext subject: "Test E-posta",
+                                 body: "Bu bir test e-postasıdır.",
+                                 to: "msozenth93@gmail.com",
+                                 mimeType: 'text/plain'
+                    }
+                }
     }
 
     post {
