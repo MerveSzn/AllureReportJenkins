@@ -53,10 +53,10 @@ pipeline {
 
     post {
        always {
-               emailext subject: "Jenkins Build Sonucu: ${currentBuild.currentResult}",
-                        body: "Merhaba,\n\nPipeline çalıştı.\n\nBuild Sonucu: ${currentBuild.currentResult}\n\nİyi günler.",
-                        recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                        to: "msozenth93@gmail.com"
+               emailext subject: "Jenkins Test E-Postası",
+                        body: "Bu bir test e-postasıdır.",
+                        to: "msozenth93@gmail.com",
+                        mimeType: 'text/plain'
            }
     }
 }
