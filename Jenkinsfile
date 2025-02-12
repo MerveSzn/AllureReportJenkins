@@ -53,21 +53,9 @@ pipeline {
 
     post {
        always {
-                   script {
-                       def allureUrl = "${env.BUILD_URL}allure/"
-
-                       emailext subject: "Allure Test Raporu - Build #${env.BUILD_NUMBER}",
-                                body: """
-                                Merhaba,<br><br>
-                                Son çalıştırılan pipeline için Allure raporuna aşağıdaki linkten ulaşabilirsiniz:<br>
-                                <a href="${allureUrl}">${allureUrl}</a>
-                                <br><br>
-                                İyi çalışmalar.
-                                """,
-                                to: "msozenth93@gmail.com",
-                                mimeType: 'text/html'
-                   }
-               }
-
-    }
+               emailext subject: "Jenkins Build Sonucu: ${currentBuild.currentResult}",
+                        body: "Merhaba,\n\nPipeline çalıştı.\n\nBuild Sonucu: ${currentBuild.currentResult}\n\nİyi günler.",
+                        recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                        to: "msozenth93@gmail.com"
+           }
 }
