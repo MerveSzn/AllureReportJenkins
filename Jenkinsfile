@@ -52,9 +52,22 @@ pipeline {
     }
 
     post {
-        always {
-            cleanWs()  // Clean workspace after the build
-        }
+       always {
+                   script {
+                       def allureUrl = "${env.BUILD_URL}allure/"
+
+                       emailext subject: "Allure Test Raporu - Build #${env.BUILD_NUMBER}",
+                                body: """
+                                Merhaba,<br><br>
+                                Son çalıştırılan pipeline için Allure raporuna aşağıdaki linkten ulaşabilirsiniz:<br>
+                                <a href="${allureUrl}">${allureUrl}</a>
+                                <br><br>
+                                İyi çalışmalar.
+                                """,
+                                to: "msozenth93@gmail.com",
+                                mimeType: 'text/html'
+                   }
+               }
 
     }
 }
