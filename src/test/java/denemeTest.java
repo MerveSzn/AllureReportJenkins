@@ -7,4 +7,14 @@ public class denemeTest {
         // Test içeriği
         System.out.println("Test çalıştı!");
     }
+    @Test
+    public void testExample1() {
+        // Test içeriği
+        System.out.println("Test çalıştı!");
+    }
+    @Test
+    public void testExample2() {
+        // Test içeriği
+        System.out.println("Test çalıştı!");
+    }
 }
