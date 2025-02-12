@@ -58,4 +58,5 @@ pipeline {
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']],
                         to: "msozenth93@gmail.com"
            }
+    }
 }
